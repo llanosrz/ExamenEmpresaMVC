@@ -177,6 +177,12 @@ public class MainController {
 
  }
 
- 
+ @GetMapping("/borrar/{id}")
+ public String borrarEmpleado(@PathVariable(name = "id") int idEmpleado){
+
+    empleadoService.delete(empleadoService.findById(idEmpleado));
+
+    return "redirect:/listar";
+ }
 
 }
