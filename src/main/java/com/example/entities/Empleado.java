@@ -26,42 +26,39 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "empleados")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Empleado implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class Empleado implements Serializable{
+    private static final long serialVersionUID1 = 1L;
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "El nombre no puede ser null")
+    @NotNull
     @Size(max = 25, min = 4)
     private String nombre;
     private String apellidos;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyy-MM-dd")
     private LocalDate fechaAlta;
 
     private Genero genero;
-
-    @ManyToOne(fetch = FetchType.LAZY, 
-    cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idDepartamento")
-    private List<Empleado> empleados;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE,
-    mappedBy = "empleado")
-    private List<Telefono> telefonos;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE,
-    mappedBy = "empleado")
-    private List<Correo> correos;
 
     public enum Genero {
         HOMBRE, MUJER, OTRO
     }
 
-    
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) 
+    @JoinColumn(name = "idDepartamento")
+    private Departamento departamento;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "empleado")
+    private List<Telefono> telefonos;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "empleado")
+    private List<Correo> correos;
+
+
 }
