@@ -5,43 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de empleados</title>
 </head>
 
 <body>
-    <h1>Listado de Estudiantes</h1>
+    <h1>Listado de Empleados</h1>
 
     <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Primer Apelllido</th>
-                <th>Segundo Apellido</th>
-                <th>Fecha de Nacimiento</th>
+                <th>Apelllidos</th>
+                <th>Género</th>
                 <th>Fecha de Alta</th>
-                <th>Beca</th>
-                <th>Genero</th>
-                <th>Facultad</th>
+                <th>Departamento</th>
                 <th>Acciones</th>
             </tr>    
         </thead>
         <tbody>
-            <tr th:each=" estudiante : ${estudiantes}">
-                <td th:text="${estudiante.id}"></td>
-                <td th:text="${estudiante.nombre}"></td>
-                <td th:text="${estudiante.primerApellido}"></td>
-                <td th:text="${estudiante.segundoApellido}"></td>
-                <td th:text="${estudiante.fechaNacimiento}"></td>
-                <td th:text="${estudiante.fechaAlta}"></td>
-                <td th:text="${estudiante.beca}"></td>
-                <td th:text="${estudiante.genero}"></td>
-                <td th:text="${estudiante.facultad.nombre}"></td>
+            <tr th:each=" empleado : ${empleados}">
+                <td th:text="${empleado.id}"></td>
+                <td th:text="${empleado.nombre}"></td>
+                <td th:text="${empleado.apellidos}"></td>
+                <td th:text="${empleado.genero}"></td>
+                <td th:text="${empleado.fechaAlta}"></td>
+                <td th:text="${empleado.departamento.nombre}"></td>
                 
                 <td>
-                    <a th:href="@{/frmActualizar/}+${estudiante.id}">Actualizar</a>
-                    <a th:href="@{/borrar/}+${estudiante.id}">Borrar</a>
-                    <a th:href="@{/detalles/}+${estudiante.id}">Detalles</a>
+                    <a th:href="@{/frmActualizar/}+${empleado.id}">Actualizar</a>
+                    <a th:href="@{/borrar/}+${empleado.id}">Borrar</a>
+                    <a th:href="@{/detalles/}+${empleado.id}">Detalles</a>
                 </td>
             </tr>
         </tbody>
@@ -49,7 +43,7 @@
 </body>
 
 <div>
-    <a th:href="@{/frmAltaEstudiante}">Formulario Alta Estudiante</a>
+    <a th:href="@{/frmAltaempleado}">Formulario Alta empleado</a>
 </div>
 
 </html>
