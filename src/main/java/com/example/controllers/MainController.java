@@ -3,6 +3,8 @@ package com.example.controllers;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
@@ -135,6 +138,45 @@ public class MainController {
                     return "redirect:/listar";
 
                 }
+
+/**
+ * Muestra el formulario para Actualizar un Empleado
+ */
                                 
+ @GetMapping("/frmActualizar/{id}")
+ public String frmActualizarEmpleado(@PathVariable(name = "id") int idEmpleado, Model model){
+
+    Empleado empleado = empleadoService.findById(idEmpleado);
+
+    List<Telefono> todosTelefonos = telefonoService.findAll();
+    List<Telefono> telefonosDelEmpleado = todosTelefonos.stream()
+    .filter(telefono -> telefono.getEmpleado().getId() == idEmpleado)
+    .collect(Collectors.toList());
+
+    String numerosDeTelefono = telefonosDelEmpleado.stream()
+    .map(telefono -> telefono.getNumero())
+    .collect(Collectors.joining(";"));
+
+    List<Correo> todosCorreos = correoService.findAll();
+    List<Correo> correosDelEmpleado = todosCorreos.stream()
+    .filter(correo -> correo.getEmpleado().getId() == idEmpleado)
+    .collect(Collectors.toList());
+
+    String direccionesDeCorreo = correosDelEmpleado.stream()
+    .map(correo -> correo.getEmail())
+    .collect(Collectors.joining(";"));
+
+    List<Departamento> departamentos = departamentoService.findAll();
+
+    model.addAttribute("empleado", empleado);
+    model.addAttribute("telefonos", numerosDeTelefono);
+    model.addAttribute("correos", direccionesDeCorreo);
+    model.addAttribute("departamentos", departamentos);
+
+    return "views/formularioAltaEmpleado";
+
+ }
+
+ 
 
 }

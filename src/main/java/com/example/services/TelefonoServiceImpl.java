@@ -9,6 +9,8 @@ import com.example.dao.TelefonoDao;
 import com.example.entities.Empleado;
 import com.example.entities.Telefono;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class TelefonoServiceImpl implements TelefonoService{
 
@@ -26,16 +28,19 @@ public class TelefonoServiceImpl implements TelefonoService{
     }
 
     @Override
+    @Transactional
     public void save(Telefono telefono) {
         telefonoDao.save(telefono);
     }
 
     @Override
+    @Transactional
     public void deleteById(int idTelefono) {
         telefonoDao.deleteById(idTelefono);
     }
 
     @Override
+    @Transactional
     public void deleteByEmpleado(Empleado empleado) {
         telefonoDao.deleteByEmpleado(empleado);
     }

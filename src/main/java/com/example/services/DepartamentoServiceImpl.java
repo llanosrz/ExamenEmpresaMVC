@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.example.dao.DepartamentoDao;
 import com.example.entities.Departamento;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class DepartamentoServiceImpl implements DepartamentoService {
 
@@ -24,12 +26,15 @@ public class DepartamentoServiceImpl implements DepartamentoService {
         return departamentoDao.findById(idDepartamento).get();
     }
 
+
     @Override
+    @Transactional
     public void save(Departamento departamento) {
         departamentoDao.save(departamento);
     }
 
     @Override
+    @Transactional
     public void deleteById(int idDepartamento) {
         departamentoDao.deleteById(idDepartamento);
     }

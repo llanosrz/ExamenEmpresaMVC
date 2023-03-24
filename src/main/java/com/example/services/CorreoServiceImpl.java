@@ -9,6 +9,8 @@ import com.example.dao.CorreoDao;
 import com.example.entities.Correo;
 import com.example.entities.Empleado;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CorreoServiceImpl implements CorreoService {
 
@@ -28,16 +30,19 @@ public class CorreoServiceImpl implements CorreoService {
     }
 
     @Override
+    @Transactional
     public void save(Correo correo) {
         correoDao.save(correo);
     }
 
     @Override
+    @Transactional
     public void deleteById(int idCorreo) {
         correoDao.deleteById(idCorreo);
     }
 
     @Override
+    @Transactional
     public void deleteByEmpleado(Empleado empleado) {
         correoDao.deleteByEmpleado(empleado);
     }
