@@ -37,7 +37,7 @@ public class Departamento implements Serializable {
     private String nombre;
 
     @OneToMany(fetch = FetchType.LAZY, 
-       cascade = CascadeType.REMOVE, mappedBy = "departamento")
+       cascade = CascadeType.PERSIST, mappedBy = "departamento")
     private List<Empleado> empleados;
 
     

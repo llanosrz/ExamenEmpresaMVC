@@ -3,11 +3,13 @@ package com.example.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.dao.DepartamentoDao;
 import com.example.entities.Departamento;
 
-public class DepartamentoServiceImpl implements DepartamentoService{
+@Service
+public class DepartamentoServiceImpl implements DepartamentoService {
 
     @Autowired
     private DepartamentoDao departamentoDao;

@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Empleado implements Serializable{
-    private static final long serialVersionUID1 = 1L;
+    private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -50,8 +50,8 @@ public class Empleado implements Serializable{
         HOMBRE, MUJER, OTRO
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST) 
-    @JoinColumn(name = "idDepartamento")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH) 
+    // @JoinColumn(name = "idDepartamento")
     private Departamento departamento;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, mappedBy = "empleado")

@@ -3,11 +3,13 @@ package com.example.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.dao.CorreoDao;
 import com.example.entities.Correo;
 import com.example.entities.Empleado;
 
+@Service
 public class CorreoServiceImpl implements CorreoService {
 
     @Autowired
